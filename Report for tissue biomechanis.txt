@@ -1,0 +1,33 @@
+Report for tissue biomechanis
+
+The total lenght of the probe as for the parameters i choose is about 4mm
+
+So to check the reversability or irreversability of the tensile behaviour i choose to stretch it to around 2% to see the plastic behaviour as it was found in some studies that the bone behaves linearly until 0.8%
+Study: https://www.mdpi.com/2306-5354/11/4/395
+
+Just put in the figures for and comment some things
+
+for second point:
+Observation --> it is weird, that the displacement at point 5 isnt always 8mm, as demanded
+
+Checked the R2 error and it is a perfect fit
+
+
+
+
+
+For the second module
+So first of all no tear, even tried to stress it to 10mm, where it according to studies should tear(10-15%), which didnt happen.
+So i knew, that this model should only be used to test in a certain range. 
+So for the example that i choose the lenght was 23.36604970230688 (for the 10 mm(still have to check if the size varies again in the code))
+
+For the test then a max strain of 4% have been choosen, as it seems like i realiy doesnt matter, as the underlying model models the same thing
+To hold the experiment as realsitic as possbile, i choose a strain of about 4-5%, as there seems to be an good number according to reaserch, as it is under the irreversible level, and should capture the Youngs modulus rising at the beginnig and then the elastic behaviour after that
+1 was choosen, based on that argument
+
+For test running the can't open display 0.0, still has to be observed, like in the Matlab code, how to fix
+
+One thing that is weird, is that the last point of the set drops to 0.0, i dont know why (jsut disregard that one)
+So when i just do a ramp up, the number seem wrong
+
+
