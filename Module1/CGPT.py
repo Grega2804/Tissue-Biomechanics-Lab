@@ -5,6 +5,11 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from sklearn.linear_model import LinearRegression
 
+import os
+# Always look for files in the same folder as the script
+os.chdir(Path(__file__).parent)
+
+
 
 # === Settings ===
 TXT_PATH = Path("file.txt")
@@ -63,9 +68,7 @@ for i in range(1, 5):
     
     
 
-    
-
-plt.xlabel("Strain [-]")
+plt.xlabel("strain  " + r"$\varepsilon$ [-]")
 plt.ylabel("Stress [MPa]")
 plt.title("Stress-Strain Curves (All Gauges)")
 plt.legend()
@@ -83,7 +86,7 @@ stress_total = force / A_mean
 
 plt.figure(figsize=(8, 5))
 plt.plot(strain_total, stress_total, color="black", linewidth=2)
-plt.xlabel("Strain [-]")
+plt.xlabel("strain  " + r"$\varepsilon$ [-]")
 plt.ylabel("Stress [MPa]")
 plt.title("Stress-Strain (Total Probe 1-5)")
 plt.grid(True, alpha=0.4)

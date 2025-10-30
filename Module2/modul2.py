@@ -2,6 +2,11 @@
 from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
+
+import os
+# Always look for files in the same folder as the script
+os.chdir(Path(__file__).parent)
+
 #Function for reading in the log-files
 def parse_txt(path):
     
@@ -39,51 +44,51 @@ stress_hold = force_hold/area_hold
 strain_hold = displacement_hold/length_hold
 
 
-#plotting by claude
-fig, ax = plt.subplots(figsize=(10, 7))
+# #plotting by claude
+# fig, ax = plt.subplots(figsize=(10, 7))
 
-# Plot stress-strain curve
-ax.plot(strain_hold * 100, stress_hold, linewidth=2.5, 
-        color='#2563eb', label='ACL Tensile Test')
+# # Plot stress-strain curve
+# ax.plot(strain_hold * 100, stress_hold, linewidth=2.5, 
+#         color='#2563eb', label='ACL Tensile Test')
 
-# Styling
-ax.set_xlabel('Strain (%)', fontsize=13, fontweight='bold')
-ax.set_ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
-ax.set_title('Stress-Strain Diagram - Human ACL Quasi-Static Tensile Test', 
-             fontsize=14, fontweight='bold', pad=20)
+# # Styling
+# ax.set_xlabel('Strain (%)', fontsize=13, fontweight='bold')
+# ax.set_ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
+# ax.set_title('Stress-Strain Diagram - Human ACL Quasi-Static Tensile Test', 
+#              fontsize=14, fontweight='bold', pad=20)
 
-# Grid
-ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.8)
-ax.set_axisbelow(True)
+# # Grid
+# ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.8)
+# ax.set_axisbelow(True)
 
-# Legend
-ax.legend(loc='best', fontsize=11, framealpha=0.95, edgecolor='gray')
+# # Legend
+# ax.legend(loc='best', fontsize=11, framealpha=0.95, edgecolor='gray')
 
-# Improve tick labels
-ax.tick_params(axis='both', which='major', labelsize=11)
+# # Improve tick labels
+# ax.tick_params(axis='both', which='major', labelsize=11)
 
-# Add subtle background color
-ax.set_facecolor('#f8f9fa')
-fig.patch.set_facecolor('white')
+# # Add subtle background color
+# ax.set_facecolor('#f8f9fa')
+# fig.patch.set_facecolor('white')
 
-# Tight layout
-plt.tight_layout()
+# # Tight layout
+# plt.tight_layout()
 
-# Display
-plt.show()
+# # Display
+# plt.show()
 
 # Optional: Print key mechanical properties
 max_stress = np.max(stress_hold)
 max_strain = strain_hold[np.argmax(stress_hold)] * 100
 
-print(f"\n{'='*50}")
-print(f"Mechanical Properties Summary")
-print(f"{'='*50}")
-print(f"Maximum Stress: {max_stress:.2f} MPa")
-print(f"Strain at Max Stress: {max_strain:.2f} %")
-print(f"Gauge Length: {length_hold:.2f} mm")
-print(f"Cross-sectional Area: {area_hold:.2f} mm²")
-print(f"{'='*50}\n")
+# print(f"\n{'='*50}")
+# print(f"Mechanical Properties Summary")
+# print(f"{'='*50}")
+# print(f"Maximum Stress: {max_stress:.2f} MPa")
+# print(f"Strain at Max Stress: {max_strain:.2f} %")
+# print(f"Gauge Length: {length_hold:.2f} mm")
+# print(f"Cross-sectional Area: {area_hold:.2f} mm²")
+# print(f"{'='*50}\n")
 
 
 
@@ -104,46 +109,46 @@ stress_decay = force_decay / area_decay
 
 # Filter for displacement exactly equal to 1 mm
 # Using a small tolerance for floating point comparison
-tolerance = 0.001
+tolerance = 0.00001
 mask = np.abs(displacement_decay - 1.0) < tolerance
 
 time_filtered = time_decay[mask]
 stress_filtered = stress_decay[mask]
 
-# Create the plot
-fig, ax = plt.subplots(figsize=(10, 7))
+# # Create the plot
+# fig, ax = plt.subplots(figsize=(10, 7))
 
-# Plot stress over time
-ax.plot(time_filtered, stress_filtered, linewidth=2.5, 
-        color='#dc2626', marker='o', markersize=4, 
-        markerfacecolor='white', markeredgewidth=1.5,
-        label='Stress at 1 mm Displacement')
+# # Plot stress over time
+# ax.plot(time_filtered, stress_filtered, linewidth=2.5, 
+#         color='#dc2626', marker='o', markersize=4, 
+#         markerfacecolor='white', markeredgewidth=1.5,
+#         label='Stress at 1 mm Displacement')
 
-# Styling
-ax.set_xlabel('Time (s)', fontsize=13, fontweight='bold')
-ax.set_ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
-ax.set_title('Stress Relaxation at Constant Displacement (1 mm)', 
-             fontsize=14, fontweight='bold', pad=20)
+# # Styling
+# ax.set_xlabel('Time (s)', fontsize=13, fontweight='bold')
+# ax.set_ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
+# ax.set_title('Stress Relaxation at Constant Displacement (1 mm)', 
+#              fontsize=14, fontweight='bold', pad=20)
 
-# Grid
-ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.8)
-ax.set_axisbelow(True)
+# # Grid
+# ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.8)
+# ax.set_axisbelow(True)
 
-# Legend
-ax.legend(loc='best', fontsize=11, framealpha=0.95, edgecolor='gray')
+# # Legend
+# ax.legend(loc='best', fontsize=11, framealpha=0.95, edgecolor='gray')
 
-# Improve tick labels
-ax.tick_params(axis='both', which='major', labelsize=11)
+# # Improve tick labels
+# ax.tick_params(axis='both', which='major', labelsize=11)
 
-# Add subtle background color
-ax.set_facecolor('#f8f9fa')
-fig.patch.set_facecolor('white')
+# # Add subtle background color
+# ax.set_facecolor('#f8f9fa')
+# fig.patch.set_facecolor('white')
 
-# Tight layout
-plt.tight_layout()
+# # Tight layout
+# plt.tight_layout()
 
-# Display
-plt.show()
+# # Display
+# plt.show()
 
 # Print summary statistics
 initial_stress = stress_filtered[0]
@@ -151,121 +156,176 @@ final_stress = stress_filtered[-1]
 stress_drop = initial_stress - final_stress
 stress_drop_percent = (stress_drop / initial_stress) * 100
 
-print(f"\n{'='*50}")
-print(f"Stress Relaxation Summary (at 1 mm displacement)")
-print(f"{'='*50}")
-print(f"Number of data points: {len(time_filtered)}")
-print(f"Time range: {time_filtered[0]:.2f} - {time_filtered[-1]:.2f} s")
-print(f"Initial stress: {initial_stress:.2f} MPa")
-print(f"Final stress: {final_stress:.2f} MPa")
-print(f"Stress drop: {stress_drop:.2f} MPa ({stress_drop_percent:.1f}%)")
-print(f"{'='*50}\n")
+# print(f"\n{'='*50}")
+# print(f"Stress Relaxation Summary (at 1 mm displacement)")
+# print(f"{'='*50}")
+# print(f"Number of data points: {len(time_filtered)}")
+# print(f"Time range: {time_filtered[0]:.2f} - {time_filtered[-1]:.2f} s")
+# print(f"Initial stress: {initial_stress:.2f} MPa")
+# print(f"Final stress: {final_stress:.2f} MPa")
+# print(f"Stress drop: {stress_drop:.2f} MPa ({stress_drop_percent:.1f}%)")
+# print(f"{'='*50}\n")
+
 
 from scipy.optimize import curve_fit
 
-# Define exponential decay model for stress relaxation
-# σ(t) = σ_eq + (σ_0 - σ_eq) * exp(-t/τ)
-# where σ_eq is equilibrium stress, σ_0 is initial stress, τ is relaxation time
-def stress_relaxation_model(t, sigma_eq, sigma_0, tau):
-    """
-    Exponential stress relaxation model
-    t: time
-    sigma_eq: equilibrium stress (long-term stress)
-    sigma_0: initial stress
-    tau: relaxation time constant
-    """
-    return sigma_eq + (sigma_0 - sigma_eq) * np.exp(-t / tau)
+# --- SETUP: Time-shifting and Model Definition ---
 
-# Shift time to start at 0 for better fitting
+# It is good practice to start time from 0 for decay fitting
 time_fit = time_filtered - time_filtered[0]
 
-# Initial parameter guesses
-sigma_0_guess = stress_filtered[0]
-sigma_eq_guess = stress_filtered[-1]
-tau_guess = 50  # Initial guess for relaxation time in seconds
+# Model for a two-term exponential decay (viscoelastic stress relaxation)
+# Stress(t) = C_eq + A1*exp(R1*t) + A2*exp(R2*t)
+def two_term_exp_model(t, C_eq, A1, R1, A2, R2):
+    return C_eq + A1 * np.exp(R1 * t) + A2 * np.exp(R2 * t)
 
-# Perform curve fitting
-popt, pcov = curve_fit(stress_relaxation_model, time_fit, stress_filtered,
-                       p0=[sigma_eq_guess, sigma_0_guess, tau_guess],
-                       maxfev=10000)
+# --- HIGH-QUALITY INITIAL GUESSES (Derived from source Mathematica code) ---
 
-sigma_eq_fit, sigma_0_fit, tau_fit = popt
+# We base the guesses on the two most dominant Maxwell elements from the source.
+guess_C_eq = stress_filtered[-1]        # Equilibrium is the final stress value.
+guess_A1 = 3.5                          # Amplitude of the fast decay.
+guess_R1 = -20.0                        # Rate of the fast decay (-1 / 0.049s).
+guess_A2 = 1.8                          # Amplitude of the slow decay.
+guess_R2 = -2.1                         # Rate of the slow decay (-1 / 0.478s).
 
-# Calculate R-squared
-residuals = stress_filtered - stress_relaxation_model(time_fit, *popt)
-ss_res = np.sum(residuals**2)
-ss_tot = np.sum((stress_filtered - np.mean(stress_filtered))**2)
-r_squared = 1 - (ss_res / ss_tot)
+p0_derived = [guess_C_eq, guess_A1, guess_R1, guess_A2, guess_R2]
 
-# Generate fitted curve
-time_dense = np.linspace(0, time_fit[-1], 500)
-stress_fit = stress_relaxation_model(time_dense, *popt)
+# Print the derived guesses for inspection
+print("\n" + "="*50)
+print("Using High-Quality Initial Guesses Derived from Source:")
+print(f"  p0 = {p0_derived}")
+print("="*50 + "\n")
 
-# Create the plot with fit
-fig, ax = plt.subplots(figsize=(10, 7))
 
-# Plot experimental data
-ax.plot(time_filtered, stress_filtered, 'o', markersize=6, 
-        color='#dc2626', markerfacecolor='white', markeredgewidth=2,
-        label='Experimental Data', zorder=3)
+# Define physical bounds to keep the fit stable
+bounds = (
+    [0, 0, -np.inf, 0, -np.inf],      # Lower bounds for [C_eq, A1, R1, A2, R2]
+    [np.inf, np.inf, 0, np.inf, 0]    # Upper bounds
+)
 
-# Plot fitted curve
-ax.plot(time_filtered[0] + time_dense, stress_fit, linewidth=2.5, 
-        color='#2563eb', linestyle='--',
-        label=f'Exponential Fit (R² = {r_squared:.4f})', zorder=2)
+# --- PERFORM THE CURVE FIT ---
+try:
+    params, covariance = curve_fit(
+        two_term_exp_model,
+        time_fit,
+        stress_filtered,
+        p0=p0_derived,    # Use our new, highly-informed guesses
+        bounds=bounds,
+        maxfev=5000
+    )
 
-# Styling
-ax.set_xlabel('Time (s)', fontsize=13, fontweight='bold')
-ax.set_ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
-ax.set_title('Stress Relaxation with Exponential Curve Fit', 
-             fontsize=14, fontweight='bold', pad=20)
+    # Print the final optimized parameters
+    print("\n" + "="*50)
+    print("Final Fitted Parameters for Two-Term Model")
+    print("="*50)
+    print(f"Equilibrium Stress (C_eq): {params[0]:.3f} MPa")
+    print(f"Amplitude 1 (A1):          {params[1]:.3f} MPa")
+    print(f"Decay Rate 1 (R1):         {params[2]:.3f}")
+    print(f"Amplitude 2 (A2):          {params[3]:.3f} MPa")
+    print(f"Decay Rate 2 (R2):         {params[4]:.3f}")
+    print("="*50 + "\n")
 
-# Grid
-ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.8)
-ax.set_axisbelow(True)
+    # Generate the fitted curve using the optimized parameters
+    stress_fit_final = two_term_exp_model(time_fit, *params)
+    
+    # --- PLOTTING ---
+    plt.figure(figsize=(12, 8))
+    plt.plot(time_filtered, stress_filtered, 'o', color='#d9534f', markersize=6, label='Experimental Data')
+    plt.plot(time_filtered, stress_fit_final, '-', color='#0275d8', linewidth=3, label='Two-Term Exponential Fit')
+    
+    # Styling
+    plt.xlabel('Time (s)', fontsize=13, fontweight='bold')
+    plt.ylabel('Stress (MPa)', fontsize=13, fontweight='bold')
+    plt.title('High-Quality Two-Term Exponential Fit of Stress Relaxation', fontsize=14, fontweight='bold')
+    plt.legend(fontsize=11)
+    plt.grid(True, linestyle='--', alpha=0.6)
+    plt.tight_layout()
+    plt.show()
 
-# Legend
-ax.legend(loc='best', fontsize=11, framealpha=0.95, edgecolor='gray')
+except RuntimeError as e:
+    print(f"ERROR: The curve fitting failed to converge. Reason: {e}")
 
-# Improve tick labels
-ax.tick_params(axis='both', which='major', labelsize=11)
 
-# Add subtle background color
-ax.set_facecolor('#f8f9fa')
-fig.patch.set_facecolor('white')
 
-# Add text box with fit parameters
-textstr = f'σ(t) = σ_eq + (σ₀ - σ_eq)·exp(-t/τ)\n\n'
-textstr += f'σ₀ = {sigma_0_fit:.2f} MPa\n'
-textstr += f'σ_eq = {sigma_eq_fit:.2f} MPa\n'
-textstr += f'τ = {tau_fit:.2f} s'
-props = dict(boxstyle='round', facecolor='wheat', alpha=0.8)
-ax.text(0.65, 0.95, textstr, transform=ax.transAxes, fontsize=10,
-        verticalalignment='top', bbox=props, family='monospace')
+#Import 
+from scipy.optimize import curve_fit
 
-# Tight layout
-plt.tight_layout()
+
+#time_filtered = time_filtered - 0.1
+#print(time_filtered)
+
+# Exponential function model
+def test_eq(x, a, b, c):
+    return a * np.exp(b * x) + c
+
+param, param_cov = curve_fit(test_eq, time_filtered, stress_filtered, p0=[stress_filtered[0]-stress_filtered[-1], -0.1 , stress_filtered[-1]])
+
+# Print optimized parameters and their covariance
+# print("Exponential function coefficients:")
+# print(param)
+# print("Covariance of coefficients:")
+# print(param_cov)
+
+
+#generating fitted y values
+ans = param[0] *  np.exp(param[1] * time_filtered) + param[2]
+
+
+# plt.plot(time_filtered, stress_filtered, 'o', color='red', label='Experimental data')
+# plt.plot(time_filtered, ans, '--', color='blue', label='Fitted curve')
+# plt.xlabel('x')
+# plt.ylabel('y')
+# plt.title('Exponential Curve Fitting')
+# plt.legend()
+# plt.show()
+
+#The code probably has different Maxwell branches, like in the provided sheet
+#So lets try some higher order multiple curve fits
+
+
+def test_eq2(x, a, b, c, d, e):
+    return c + a * np.exp(b * x) + d * np.exp(e * x)
+
+# p2 = [stress_filtered[-1],  # long-term equilibrium stress
+#       stress_filtered[0] - stress_filtered[-1],  # total amplitude
+#       0.5,  # tau1 fast
+#       (stress_filtered[0] - stress_filtered[-1])/2, 5.0]
+#Shitty guess, find a better one
+
+#--- Constructing Better Initial Guesses ---
+
+# C_eq: The long-term equilibrium stress is the final stress in the data.
+initial_guess_c = stress_filtered[-1]
+
+# The total stress drop is the initial stress minus the final stress.
+total_stress_drop = stress_filtered[0] - stress_filtered[-1]
+
+# A1, A2: Let's guess the two amplitudes each contribute to half of the total drop.
+initial_guess_A1 = total_stress_drop / 2.0
+initial_guess_A2 = total_stress_drop / 2.0
+
+# R1, R2: The decay rates MUST be negative. Let's guess one is for a "fast" decay
+# and the other for a "slow" decay.
+initial_guess_R1 = -1.0  # Fast decay rate
+initial_guess_R2 = -0.1  # Slow decay rate
+
+p2= [initial_guess_c, initial_guess_A1, initial_guess_R1, initial_guess_A2, initial_guess_R2]
+
+
+
+
+
+
+
+param2, param_cov2 = curve_fit(test_eq2, time_filtered, stress_filtered, p2)
+
+ans2 = param2[0] *  np.exp(param2[1] * time_filtered) + param2[2] +param2[3]*np.exp(param2[4] * time_filtered)
+
+
+plt.plot(time_filtered, stress_filtered, 'o', color='red', label='Experimental data')
+plt.plot(time_filtered, ans2, '--', color='blue', label='Fitted curve')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Exponential Curve Fitting')
+plt.legend()
 plt.show()
-
-# Print detailed results
-print(f"\n{'='*60}")
-print(f"Stress Relaxation Curve Fit Results")
-print(f"{'='*60}")
-print(f"Model: σ(t) = σ_eq + (σ₀ - σ_eq) × exp(-t/τ)")
-print(f"{'-'*60}")
-print(f"Fitted Parameters:")
-print(f"  Initial Stress (σ₀):      {sigma_0_fit:.3f} MPa")
-print(f"  Equilibrium Stress (σ_eq): {sigma_eq_fit:.3f} MPa")
-print(f"  Relaxation Time (τ):       {tau_fit:.3f} s")
-print(f"{'-'*60}")
-print(f"Stress Drop:")
-print(f"  Absolute: {sigma_0_fit - sigma_eq_fit:.3f} MPa")
-print(f"  Relative: {((sigma_0_fit - sigma_eq_fit)/sigma_0_fit)*100:.1f}%")
-print(f"{'-'*60}")
-print(f"Goodness of Fit:")
-print(f"  R² = {r_squared:.6f}")
-print(f"  RMSE = {np.sqrt(ss_res/len(stress_filtered)):.4f} MPa")
-print(f"{'-'*60}")
-print(f"Time to reach 63% relaxation (1τ): {tau_fit:.2f} s")
-print(f"Time to reach 95% relaxation (3τ): {3*tau_fit:.2f} s")
-print(f"{'='*60}\n")
