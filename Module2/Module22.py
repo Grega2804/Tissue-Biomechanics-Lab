@@ -148,7 +148,7 @@ coeffs = np.polyfit(log_times, max_stress, 3)  # 2nd degree polynomial
 stress_smooth = np.polyval(coeffs, log_times_smooth)
 
 print(f"\nFitted function:")
-print(f"Max Stress = {coeffs[0]:.4f} * (log10(time))^2 + {coeffs[1]:.4f} * log10(time) + {coeffs[2]:.4f}")
+print(f"Max Stress = {coeffs[0]:.4f} * (log10(time))^3 + {coeffs[1]:.4f} * (log10(time))^2+ {coeffs[2]:.4f} * log10(time)12 +{coeffs[3]:.4f}")
 
 plt.figure(figsize=(8, 6))
 plt.plot(loading_times, max_stress, 'o', markersize=8, label='Data')
@@ -160,5 +160,4 @@ plt.grid(True, alpha=0.3)
 plt.xscale('log')
 plt.legend()
 plt.show()
-
 
